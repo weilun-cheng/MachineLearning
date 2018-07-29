@@ -39,8 +39,9 @@ n=size(theta);
 prediction=sigmoid(X * theta);
 delta = y.*log(prediction)+(1-y).*log(1-prediction);
 J=-1/m*sum(delta)+lambda*0.5/m*sum(theta(2:n,:).^2);
+temp = X(:,1)' * (prediction-y)/m;
 grad = X' * (prediction-y)/m + lambda/m*theta;
-grad(1,:) = 0;
+grad(1,:) = temp;
 
 
 
