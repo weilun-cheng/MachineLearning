@@ -52,8 +52,12 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-
-
+val_size=size(Xval,1);
+for i=1:m
+    [theta_temp] = trainLinearReg([ones(i, 1) X(1:i,:)], y(1:i,:), lambda);
+    error_train(i) = 0.5/i*sum(([ones(i, 1) X(1:i,:)]*theta_temp-y(1:i,:)).^2);
+    error_val(i) = 0.5/val_size*sum(([ones(val_size,1) Xval]*theta_temp-yval).^2);
+end
 
 
 
