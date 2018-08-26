@@ -20,7 +20,16 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
+for i=1:length(X)
+    min=999999;
+    for j=1:K
+        dist=pdist2(X(i,:),centroids(j,:),'euclidean');
+        if (dist < min)
+            idx(i) = j;
+            min = dist;
+        end
+    end
+end
 
 
 
